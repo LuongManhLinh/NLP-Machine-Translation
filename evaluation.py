@@ -58,7 +58,7 @@ def tokenize_text(tokenize_fn, text):
     return run_with_timeout(tokenize_fn, 2, text)
 
 
-def calculate_bleu(reference_file, candidate_file, lang, use_sacrebleu=True):
+def calculate_bleu(reference_file, candidate_file, lang):
     with open(reference_file, 'r', encoding='utf-8') as ref_file:
         references = ref_file.readlines()
     
@@ -91,25 +91,27 @@ def calculate_bleu(reference_file, candidate_file, lang, use_sacrebleu=True):
         else:
             print(f"Skipping line {idx + 1} due to timeout or error in tokenization.")
 
-    # Calculate BLEU score
-    if use_sacrebleu:
-        return sacrebleu.corpus_bleu(filtered_candidates, filtered_references, tokenize='none', lowercase=True)
-    else:
-        bleu = evaluate.load("bleu")
-        return bleu.compute(predictions=filtered_candidates, references=filtered_references)
+    bleu_score_1 = sacrebleu.corpus_bleu(filtered_candidates, filtered_references).score
+    chrf_score_1 = sacrebleu.corpus_chrf(candidates, references, word_order=0).score
+
+    bleu = evaluate.load("bleu")
+    bleu_score_2 = bleu.compute(predictions=filtered_candidates, references=filtered_references)['bleu']
+
+    chrf = evaluate.load("chrf")
+    chrf_score_2 = chrf.compute(predictions=candidates, references=references)['score']
+    return bleu_score_1, bleu_score_2, chrf_score_1, chrf_score_2
 
 
 if __name__ == "__main__":
-    lang = 'lo'  # Change to 'vi' for Vietnamese
+    lang = 'vi'  # Change to 'vi' for Vietnamese
     file_idx = 1  # Change to the desired file index
     candidate_file = f'results/{lang}/pred{file_idx}.txt'
     reference_file = f'results/{lang}/label{file_idx}.txt'
 
-    # Calculate BLEU score without tokenization
-    bleu_score = calculate_bleu(reference_file, candidate_file, lang=lang, use_sacrebleu=False)
+    bleu_score_1, bleu_score_2, chrf_score_1, chrf_score_2 = calculate_bleu(reference_file, candidate_file, lang)
+    print(f"BLEU score by sacrebleu: {bleu_score_1}")
+    print(f"BLEU score by evaluate:  {bleu_score_2}")
+    print(f"CHRF score by sacrebleu: {chrf_score_1}")
+    print(f"CHRF score by evaluate:  {chrf_score_2}")
 
-    print("Evaluate by evaluate.load('bleu'): ", bleu_score)
 
-    # Calculate BLEU score with sacrebleu
-    bleu_score = calculate_bleu(reference_file, candidate_file, lang=lang, use_sacrebleu=True)
-    print("Evaluate by sacrebleu: ", bleu_score)
