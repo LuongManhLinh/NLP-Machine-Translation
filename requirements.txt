@@ -1,0 +1,7 @@
+sacrebleu
+pyvi
+laonlp
+sentencepiece
+transformers
+datasets
+torch
