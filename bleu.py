@@ -3,6 +3,7 @@ from laonlp.tokenize import word_tokenize as lo_tokenize
 from vi_tokenize import vi_tokenize
 import threading
 import ctypes
+import evaluate
 
 def run_with_timeout(func, timeout, *args, **kwargs):
     result = [None]
@@ -57,7 +58,7 @@ def tokenize_text(tokenize_fn, text):
     return run_with_timeout(tokenize_fn, 2, text)
 
 
-def calculate_bleu(reference_file, candidate_file, lang):
+def calculate_bleu(reference_file, candidate_file, lang, use_sacrebleu=True):
     with open(reference_file, 'r', encoding='utf-8') as ref_file:
         references = ref_file.readlines()
     
@@ -91,15 +92,24 @@ def calculate_bleu(reference_file, candidate_file, lang):
             print(f"Skipping line {idx + 1} due to timeout or error in tokenization.")
 
     # Calculate BLEU score
-    return sacrebleu.corpus_bleu(filtered_candidates, filtered_references, tokenize='none', lowercase=True)
+    if use_sacrebleu:
+        return sacrebleu.corpus_bleu(filtered_candidates, filtered_references, tokenize='none', lowercase=True)
+    else:
+        bleu = evaluate.load("bleu")
+        return bleu.compute(predictions=filtered_candidates, references=filtered_references)
 
 
 if __name__ == "__main__":
-    candidate_file = 'results/vi/pred1.txt'
-    reference_file = 'results/vi/label1.txt'
+    lang = 'lo'  # Change to 'vi' for Vietnamese
+    file_idx = 1  # Change to the desired file index
+    candidate_file = f'results/{lang}/pred{file_idx}.txt'
+    reference_file = f'results/{lang}/label{file_idx}.txt'
 
     # Calculate BLEU score without tokenization
-    bleu_score = calculate_bleu(reference_file, candidate_file, lang='vi')
+    bleu_score = calculate_bleu(reference_file, candidate_file, lang=lang, use_sacrebleu=False)
 
-    print(f"BLEU score: {bleu_score.score:.2f}")
-    print("Details:", bleu_score)
+    print("Evaluate by evaluate.load('bleu'): ", bleu_score)
+
+    # Calculate BLEU score with sacrebleu
+    bleu_score = calculate_bleu(reference_file, candidate_file, lang=lang, use_sacrebleu=True)
+    print("Evaluate by sacrebleu: ", bleu_score)

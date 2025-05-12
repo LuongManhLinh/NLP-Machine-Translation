@@ -5,7 +5,9 @@
 Dự án tạo ra mô hình dịch máy giữa tiếng Việt và tiếng Lào
 
 ## 👥 Thành viên nhóm
-
+Lương Mạnh Linh     22021215
+Lê Quang Thắng      22021209
+Đặng Thanh Quang    22021134
 
 ## 🧠 Mô hình sử dụng
 
