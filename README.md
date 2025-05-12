@@ -1,6 +1,3 @@
-Dưới đây là một ví dụ file `README.md` phù hợp với mô tả của bạn:
-
-```markdown
 # Vietnamese-Laotian Machine Translation
 
 ## 📌 Mô tả dự án
