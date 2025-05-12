@@ -95,11 +95,11 @@ def calculate_bleu(reference_file, candidate_file, lang):
 
 
 if __name__ == "__main__":
-    candidate_file = 'results/lo/pred1.txt'
-    reference_file = 'results/lo/label1.txt'
+    candidate_file = 'results/vi/pred1.txt'
+    reference_file = 'results/vi/label1.txt'
 
     # Calculate BLEU score without tokenization
-    bleu_score = calculate_bleu(reference_file, candidate_file, lang='lo')
+    bleu_score = calculate_bleu(reference_file, candidate_file, lang='vi')
 
     print(f"BLEU score: {bleu_score.score:.2f}")
     print("Details:", bleu_score)
