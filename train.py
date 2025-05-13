@@ -169,6 +169,7 @@ class DynamicStartTokenCollator(DataCollatorForSeq2Seq):
 
         return batch
     
+    
 def load_data(file_1, file_2, lang_1, lang_2, lowercase=True):
     """Load parallel data from Vietnamese and Lao files."""
     with open(file_1, 'r', encoding='utf-8') as f_vi:
@@ -191,8 +192,10 @@ def create_datasets(
         dev_lang2_file,
         test_lang1_file,
         test_lang2_file,
-        train_add_lang1_file=None,
-        train_add_lang2_file=None,
+        train_ggtrans_lang1_file=None,
+        train_ggtrans_lang2_file=None,
+        train_gemini_lang1_file=None,
+        train_gemini_lang2_file=None,
         lang_1='vi',
         lang_2='lo',
         lowercase=True
@@ -202,10 +205,21 @@ def create_datasets(
     dev_data = load_data(dev_lang1_file, dev_lang2_file, lang_1, lang_2, lowercase)
     test_data = load_data(test_lang1_file, test_lang2_file, lang_1, lang_2, lowercase)
 
-    if train_add_lang1_file and train_add_lang2_file:
-        train_add_data = load_data(train_add_lang1_file, train_add_lang2_file, lang_1, lang_2, lowercase)
-        train_data[lang_1].extend(train_add_data[lang_1])
-        train_data[lang_2].extend(train_add_data[lang_2])
+    if train_ggtrans_lang1_file and train_ggtrans_lang2_file:
+        train_ggtrans_data = load_data(train_ggtrans_lang1_file, train_ggtrans_lang2_file, lang_1, lang_2, lowercase)
+
+    if train_gemini_lang1_file and train_gemini_lang2_file:
+        train_gemini_data = load_data(train_gemini_lang1_file, train_gemini_lang2_file, lang_1, lang_2, lowercase)
+
+    ggtrans_dataset = Dataset.from_dict(train_ggtrans_data)
+    gemini_dataset = Dataset.from_dict(train_gemini_data)
+
+    ggtrans_sample = ggtrans_dataset.train_test_split(train_size=25000, seed=42)['train'].to_dict()
+    gemini_sample = gemini_dataset.train_test_split(train_size=75000, seed=42)['train'].to_dict()
+
+    # Concatenate ggtrans and gemini data with train data
+    train_data[lang_1] = train_data[lang_1] + ggtrans_sample[lang_1] + gemini_sample[lang_1]
+    train_data[lang_2] = train_data[lang_2] + ggtrans_sample[lang_2] + gemini_sample[lang_2]
 
     datasets = DatasetDict({
         'train': Dataset.from_dict(train_data),
@@ -216,7 +230,6 @@ def create_datasets(
     datasets['train'] = datasets['train'].shuffle(seed=42)
 
     return datasets
-
 
 def train_sentencepiece_model(texts, vocab_size=40000, model_prefix='vi_lo'):
     with open('combined_text.txt', 'w', encoding='utf-8') as f:
