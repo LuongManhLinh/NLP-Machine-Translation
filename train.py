@@ -366,8 +366,8 @@ def train_model(
         output_dir=output_dir,
         eval_strategy="epoch",
         # eval_steps=1000,
-        learning_rate=1e-4,
-        warmup_steps=1500,
+        learning_rate=3e-5,
+        warmup_steps=2000,
         lr_scheduler_type="linear",
         per_device_train_batch_size=batch_size,
         per_device_eval_batch_size=batch_size,
@@ -384,9 +384,9 @@ def train_model(
         metric_for_best_model="eval_loss",
         greater_is_better=False,
         gradient_checkpointing=False,
-        gradient_accumulation_steps=1,
+        gradient_accumulation_steps=2,
         max_grad_norm=0.75,
-        torch_compile=True
+        # torch_compile=True
     )
 
     print('Preparing datasets for training...')
