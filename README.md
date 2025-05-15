@@ -41,3 +41,7 @@ Lê Quang Thắng      22021209
 - Kết quả trên tập test:  
   - Việt -> Lào:  BLEU Score ~56 (sacrebleu) và ~29 (evaluate)
   - Lào -> Việt: BLEU Score ~41 (cả sacrebleu và evaluate)
+
+## Sử dụng mô hình
+- Model M2M100 209M của nhóm đã có trên [HuggingFace](https://huggingface.co/luongmanhlinh)
+- Transformer tiêu chuẩn có thể được tải xuống tại [đây](https://drive.google.com/drive/folders/1_SPVJjF4urbIOiTJ1woGjxnHQS1Gu-V4)
