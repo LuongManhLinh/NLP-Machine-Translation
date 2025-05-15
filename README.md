@@ -45,3 +45,4 @@ Lê Quang Thắng      22021209
 ## Sử dụng mô hình
 - Model M2M100 209M của nhóm đã có trên [HuggingFace](https://huggingface.co/luongmanhlinh)
 - Transformer tiêu chuẩn có thể được tải xuống tại [đây](https://drive.google.com/drive/folders/1_SPVJjF4urbIOiTJ1woGjxnHQS1Gu-V4)
+- Mô hình transformer tiêu chuẩn thực thi ở tại [đây](https://colab.research.google.com/drive/1tqcicKc-m_coMQAgXj0LrpyZn-mzM2wK#scrollTo=Xeks6cINbMg)
