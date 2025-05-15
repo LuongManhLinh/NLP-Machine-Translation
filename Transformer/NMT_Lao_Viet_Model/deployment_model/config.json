@@ -1,0 +1,16 @@
+{
+  "d_model": 512,
+  "nhead": 8,
+  "num_encoder_layers": 6,
+  "num_decoder_layers": 6,
+  "dim_feedforward": 1024,
+  "dropout": 0.1,
+  "src_vocab_size": 16000,
+  "tgt_vocab_size": 16000,
+  "special_tokens": {
+    "PAD_IDX": 0,
+    "UNK_IDX": 1,
+    "BOS_IDX": 2,
+    "EOS_IDX": 3
+  }
+}
