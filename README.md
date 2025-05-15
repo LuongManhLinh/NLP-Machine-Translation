@@ -12,14 +12,18 @@ Lê Quang Thắng      22021209
 ## 🧠 Mô hình sử dụng
 
 - **M2M100**: Một mô hình dịch đa ngôn ngữ không cần phụ thuộc vào tiếng Anh làm ngôn ngữ trung gian. Mô hình có thể dịch trực tiếp giữa hơn 100 ngôn ngữ, bao gồm cả tiếng Việt và tiếng Lào.
-
+-**Transformer tiêu chuẩn**: Mô hình tự tạo thích hợp cho tác vụ dịch máy
 ## 📂 Các tệp chính trong dự án
 
 ```
 .
-├── m2m100_vilo.ipynb   # File Jupiter Notebook dùng để việc xử lý dữ liệu, tạo, train và evaluate model
-├── bleu.py             # Script tính BLEU Score từ kết quả được ghi ở file
-├── results/            # Chứa một số kết quả của việc chạy test trên mô hình đã được train
+├── report/             # Thư mục chứa báo cáo
+├── slide/              # Thư mục chứa slide trình bày
+├── src/                # Thư mục chứa mã nguồn
+│   ├── m2m100_vilo.ipynb   # Notebook xử lý dữ liệu, train và evaluate model
+│   └── bleu.py             # Script tính BLEU Score từ kết quả
+├── results/            # Thư mục chứa kết quả trên tập test
+
 ```
 
 ## 🚀 Cách chạy
@@ -35,4 +39,5 @@ Lê Quang Thắng      22021209
 ## 📊 Đánh giá
 - Sử dụng BLEU score để đánh giá chất lượng bản dịch.
 - Kết quả trên tập test:  
-  - Việt -> Lào:  BLEU score ~56 
+  - Việt -> Lào:  BLEU Score ~56 (sacrebleu) và ~29 (evaluate)
+  - Lào -> Việt: BLEU Score ~41 (cả sacrebleu và evaluate)

@@ -57,13 +57,23 @@ def tokenize_text(tokenize_fn, text):
     """A custome tokenize function useful in the case of tokenize_fn running for too long"""
     return run_with_timeout(tokenize_fn, 2, text)
 
+def remove_special_characters(text):
+    # If text start or end with ", remove it
+    text = text.strip().lower()
+    if text.startswith('"'):
+        text = text[1:]
+    if text.endswith('"'):
+        text = text[:-1]
+    return text
 
 def calculate_bleu(reference_file, candidate_file, lang):
     with open(reference_file, 'r', encoding='utf-8') as ref_file:
         references = ref_file.readlines()
+        references = [remove_special_characters(ref) for ref in references]
     
     with open(candidate_file, 'r', encoding='utf-8') as cand_file:
         candidates = cand_file.readlines()
+        candidates = [remove_special_characters(cand) for cand in candidates]
 
     if len(references) != len(candidates):
         raise ValueError(f"Number of references ({len(references)}) does not match number of candidates ({len(candidates)})")
@@ -104,7 +114,7 @@ def calculate_bleu(reference_file, candidate_file, lang):
 
 if __name__ == "__main__":
     lang = 'vi'  # Change to 'vi' for Vietnamese
-    file_idx = 1  # Change to the desired file index
+    file_idx = 1 # Change to the desired file index
     candidate_file = f'results/{lang}/pred{file_idx}.txt'
     reference_file = f'results/{lang}/label{file_idx}.txt'
 
