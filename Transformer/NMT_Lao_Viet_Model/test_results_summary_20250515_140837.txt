@@ -1,0 +1,24 @@
+Lao-Vietnamese NMT Test Results
+Date: 2025-05-15 14:08:37
+
+BLEU Score on test set: 37.47
+
+Number of test samples: 1000
+
+Example Translations (first 5):
+==================================================
+Reference: Sáng 1/12, tại Quảng trường Trung tâm Truyền thông và Văn hoá thành phố Móng Cái, tỉnh Quảng Ninh khai mạc Hội chợ Thương mại, Du lịch quốc tế Việt- Trung (Móng Cái- Đông Hưng) năm 2019.
+Translation: Sáng 1/12, tại Quảng trường Trung tâm Truyền thông và Văn hóa thành phố Mậu Thái Nguyên, tỉnh Quảng Ninh, khai mạc hội chợ thương mại, Du lịch quốc tế Việt Nam – Trung Quốc (Nhiều Thái - Đại Quang Minh) năm 2019., huyện Thuỷ ban Phòng Thương mại, Uỷ ban Phòng Thương mại, Du lịch quốc tế Việt Nam – Campuchia (Tăng cường)al trực tuyến/CVào) của tất cả 2/Vào), nằm trong khuôn khổ chuỗi gía trị đặc biệt Việt Nam (Nhiều hơn) (Nhiều hơn..
+--------------------------------------------------
+Reference: Từ 4/2018- 3/2019, Trần Khắc Hùng và đồng phạm đã làm, cấp bằng, giấy chứng nhận giả cho 431 trường hợp, thu lợi bất chính số tiền hơn 7,1 tỷ đồng
+Translation: Nhưng vào ngày 4/2018 – 39, Trần treo mình trở lại và nghe suy nghĩ, tắt giấy mời, để lại 431 trường hợp, bộ sưu tập thẻ bị xáo trộn hơn 71 tỷ đồng..... từng từng bò dưới gừng bò. ra u đầy đủ. hoặc 68,9761 được sản xuất hàng loạt với trọng lượng. ... ... ... ... ... [...] [...] ... [...] [...] [...] [...] [...] [...]
+--------------------------------------------------
+Reference: Nguyễn Thị Ngọc Thái (cựu nhân viên Viện Đào tạo liên tục): 24 tháng tù, hưởng án treo; Lê Thị Thanh Tâm (cựu nhân viên Viện 4.0): 30 tháng tù treo.
+Translation: Ông Nguyễn Thị Thuộc Hoa Kỳ (dự án không bảo hiểm (dị phân 24 tháng, trừu tượng vụng về (dị trưởng Phụ lục). số theo dõi được chuyển tới ngày 30 tháng.. từ 4 tháng... (m.) được lưu trữ (mục đích) được trích dẫn trong căn hộ 1-230.) và “bắt đầu Hack” trong trường hợp các dòng vô ích. (trên “Jude đúng) và “
+--------------------------------------------------
+Reference: Tối 21/2, tại huyện Mèo Vạc (tỉnh Hà Giang), diễn ra Lễ hội hoa đào - 2019 với nhiều hoạt động hấp dẫn thu hút đông đảo du khách trong và ngoài nước tới trải nghiệm.
+Translation: Tối 21/2, tại Mèo Vạc (Hà Giang), diễn ra Lễ hội hoa đào - 2019 với nhiều hoạt động thu hút du khách trong và ngoài nước tới trải nghiệm. rất nhiều.. Nhóm đang phát triển. khối cầu cũng từ Săn điều tiết. bày tỏ tin tức.. ấm... chai mỗi chai mà thôi, đồ nướng đồ nướng đồ nướng đồ nướng đồ nướng ngoài trời trong thời gian tới. ...) của tất cả mọi người.! giỏ hàng....
+--------------------------------------------------
+Reference: Bị cáo Lê Thị Lương (cựu nhân viên Viện 4.0): 15 tháng tù nhưng cho hưởng án treo; Ngô Quang Hiển (cựu nhân viên Viện Đào tạo liên tục): 12 tháng tù treo.
+Translation: Điều Số liệu có bằng máy photocopybotcharium (Dù đắp là nền tảng cho cuộc sống; người đứng đầu là trung tâm của chương trình đào tạo thường xuyên nhất (MRI). Mũa..goth ...... gen này..ng tùng tối đa là nền tảng và bán được trích dẫn Aires.) và mỗi tế bào cơ necker.) và ‘Đại sao!!! gió và đất.
+--------------------------------------------------
